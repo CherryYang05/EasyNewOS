@@ -1,0 +1,61 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // {
+        //     "name": "Python: 当前文件",
+        //     "type": "python",
+        //     "request": "launch",
+        //     "program": "${file}",
+        //     "console": "integratedTerminal"
+        // },
+        {
+            "name": "(C/Cpp) LLDB Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "args": [],
+        },
+        {
+            "name": "(cpp) debug",
+            "preLaunchTask": "g++ Compile",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:\\Software\\VSCode\\MinGW\\mingw64\\bin\\gdb.exe", // 这里修改GDB路径为安装的mingw64的bin下的gdb.exe路径
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(c) debug",
+            "preLaunchTask": "gcc Compile",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "D:\\Software\\VSCode\\MinGW\\mingw64\\bin\\gdb.exe", // 这里修改GDB路径为安装的mingw64的bin下的gdb.exe路径
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

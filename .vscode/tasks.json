@@ -1,0 +1,111 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558 
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "g++ Compile",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-Wall",
+                "-Wl,-stack_size,0x20000000",    // 256MB
+                "-std=c++17",
+                "\"${file}\"",
+                "-o",
+                "\"${fileDirname}/${fileBasenameNoExtension}.exe\""
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "gcc Compile",
+            "command": "gcc",
+            "args": [
+                "-g",
+                "-Wall",
+                // "-Wl,--stack=268435456",
+                "\"${file}\"",
+                "-o",
+                // "-std=c11",
+                "\"${fileDirname}/${fileBasenameNoExtension}.exe\""
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Cpp",
+            "command": "\"${fileDirname}/${fileBasenameNoExtension}.exe\"",
+            "dependsOn": "g++ Compile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            }
+        },
+        {
+            "type": "shell",
+            "label": "C",
+            "command": "\"${fileDirname}/${fileBasenameNoExtension}.exe\"",
+            "dependsOn": "gcc Compile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            }
+        }
+    ]
+}
