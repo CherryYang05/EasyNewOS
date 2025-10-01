@@ -45,3 +45,13 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 在安装 WSL2 之前首先要将 **适用于 Linux 的 Windows 子系统** 的功能打开，详见[这篇文章](https://zhuanlan.zhihu.com/p/675310334)。
 
 [Windows11 安装 WSL2 详细过程](https://www.cnblogs.com/xiao987334176/p/18864140#autoid-1-1-0)
+
+### 5. 字体
+
+- [苹方](https://github.com/ACT-02/PingFang-for-Windows)
+
+- [Melon](https://github.com/ueaner/fonts)
+
+- [Fira Code](https://github.com/tonsky/FiraCode)
+
+- [Monaco](https://github.com/Karmenzind/monaco-nerd-fonts)
