@@ -4,7 +4,11 @@
 
 ## Win
 
-### 1. VSCode(Win、macOS、Linux 通用)
+### 1. 激活 Windows 和 Office
+
+通过 [这个方式](https://massgrave.dev/) 可以最简单地激活 Windows 和 Office，这个方法经证实确实有效（当前为2025年10月3日），可以直接激活数字许可证，根据网页和终端中的指示做即可。
+
+### 2. VSCode(Win、macOS、Linux 通用)
 
 VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`、`launch.json` 两个文件
 
@@ -12,7 +16,7 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 
 配置 **删除行** 的快捷键（`CTRL + D`）
 
-### 2. VSCode 插件
+### 3. VSCode 插件
 
 不过 VSCode 可以通过云同步将配置和插件一键同步到新设备。
 
@@ -30,13 +34,13 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 
 - [Reload](https://marketplace.visualstudio.com/items?itemName=natqe.reload)
 
-### 3. GCC
+### 4. GCC
 
 [GCC Install](https://www.gnu.org/software/gcc/)
 
 推荐使用 [MSY2S](https://www.msys2.org/)，可以安装最新版本的 GCC，同时可以安装最新版本的 gdb。不推荐使用 MinGW 来安装 GCC，MinGW 是编译生成 32 位的程序，同时 gdb 版本也只有 7.6.1，低版本的 gdb 在 vscode 中进行调试时很难直观看到容器中的具体值，添加 watch 很多也都不支持，新版本 gdb 则没有这个问题。可以使用 MinGW-w64.
 
-### 4. WSL
+### 5. WSL
 
 首选推荐使用 [WSL2](https://learn.microsoft.com/zh-cn/windows/wsl/install)，通过[这篇文章](https://www.cnblogs.com/charescape/p/18867702)可以将 WSL2 的虚拟硬盘从默认的 C 盘迁移到任意地方。
 
@@ -44,7 +48,7 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 
 [Windows11 安装 WSL2 详细过程](https://www.cnblogs.com/xiao987334176/p/18864140#autoid-1-1-0)
 
-### 5. 字体
+### 6. 字体
 
 - [苹方](https://github.com/ACT-02/PingFang-for-Windows)
 
