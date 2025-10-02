@@ -6,7 +6,9 @@
 
 ### 1. 激活 Windows 和 Office
 
-通过 [这个方式](https://massgrave.dev/) 可以最简单地激活 Windows 和 Office，这个方法经证实确实有效（当前为2025年10月3日），可以直接激活数字许可证，根据网页和终端中的指示做即可。
+在 [这个网站](https://massgrave.dev/) 可以最简单地激活 Windows 和 Office，这个方法经证实确实有效（当前为2025年10月3日），可以直接激活数字许可证，根据网页和终端中的指示做即可。
+
+在这个网站还可以下载各种版本的 Windows 镜像和各个版本的 Office（包括 Microsoft 365）。
 
 ### 2. VSCode(Win、macOS、Linux 通用)
 
