@@ -2,8 +2,6 @@
 
 对新系统（Win、macOS、Linux）进行配置，包含通用软件、脚本和配置文件。
 
-[toc]
-
 ## Win
 
 ### 1. VSCode(Win、macOS、Linux 通用)
@@ -49,6 +47,8 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 ### 5. 字体
 
 - [苹方](https://github.com/ACT-02/PingFang-for-Windows)
+
+- [思源宋体](https://github.com/adobe-fonts/source-han-serif)
 
 - [Melon](https://github.com/ueaner/fonts)
 
