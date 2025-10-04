@@ -50,14 +50,111 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 
 [Windows11 安装 WSL2 详细过程](https://www.cnblogs.com/xiao987334176/p/18864140#autoid-1-1-0)
 
+附：当宿主机配置了代理的时候，运行 WSL 终端会出现 `wsl: 检测到 localhost 代理配置，但未镜像到 WSL。NAT 模式下的 WSL 不支持 localhost 代理` 的提示，[这篇文章](https://www.cnblogs.com/hg479/p/17869109.html) 和 [WSL 的 github issue](https://github.com/microsoft/WSL/issues/10753) 可以解决这个问题。
+
 ### 6. 字体
 
 - [苹方](https://github.com/ACT-02/PingFang-for-Windows)
 
 - [思源宋体](https://github.com/adobe-fonts/source-han-serif)
 
-- [Melon](https://github.com/ueaner/fonts)
-
 - [Fira Code](https://github.com/tonsky/FiraCode)
 
+- [Cascadia Code](https://github.com/microsoft/cascadia-code)
+
+- [Melon](https://github.com/ueaner/fonts)
+
 - [Monaco](https://github.com/Karmenzind/monaco-nerd-fonts)
+
+## Linux
+
+以下以 Ubuntu 24.04 的配置为例。
+
+### 1. 换源
+
+将默认的 Ubuntu 源更换清华源。
+
+### 2. root 免密登录
+
+如果是自己的虚拟机或者是 WSL，系统中没有很重要的东西，可以配置 sudo 免密操作，这样比较方便，不用每次 sudo 都输入密码了。
+
+这个操作需要编辑 `/etc/sudoers` 文件，执行脚本为 `modify_sudoers.sh`
+
+### 3. SSH 及 秘钥登录
+
+一些系统中只有 `SSH 客户端`而没有 `SSH 服务器`，因此要手动安装并配置 SSH Server。
+
+先安装 ssh-server 包：
+
+```shell
+sudo apt install openssh-server
+```
+
+可以编辑 sshd_config 文件，修改开放的端口号和一些权限设置（允许 root 密码认证登录，）
+
+秘钥登录方式：A（SSH Client） 连接 B（SSH Server），A 需要将公钥（.pub）文件发送给 B。
+
+如果要连接我们安装的 Ubuntu（SSH Server），要在宿主机上生成公钥。
+
+```shell
+ssh-keygen
+```
+
+参数说明：
+
+- t：不加参数就是默认使用 ed25519 算法（比 RSA 更安全高效）
+
+- C：添加注释（通常用邮箱标识密钥）
+
+- f：指定密钥文件名（默认为 id_ed25519）
+
+然后将公钥复制到服务器的 `~/.ssh/authorized_keys` 文件中
+
+```shell
+# 方法1：使用 ssh-copy-id（最简单）
+ssh-copy-id -i ~/.ssh/my_server_key.pub username@server_ip -p 22
+
+# 方法2：手动复制（当 ssh-copy-id 不可用时）
+cat ~/.ssh/my_server_key.pub | ssh username@server_ip "mkdir -p ~/.ssh && chmod 700 ~/.ssh && cat >> ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys"
+```
+
+最后再重启 sshd 服务：
+
+```shell
+sudo service sshd restart
+```
+
+### 3. 常用包的安装
+
+- net-tools：查看和配置网络
+    >当然现在高版本的 Ubuntu 默认使用 iproute2 工具，通过 ip 命令实现所有功能（例如 `ip addr show` 替代 `ifconfig` 命令）
+
+- curl：用于从服务器传输数据或向服务器传输数据的工具（支持多种协议）
+
+- wget：非交互式的网络文件下载工具
+
+- vim：文本编辑器
+
+- openssh-server：ssh 服务器
+
+- htop：交互式的进程查看器，比 top 更强大
+
+- tree：以树状图列出目录的内容
+
+- git：版本控制
+
+- tmux：终端复用器，允许在单个终端窗口中运行多个终端会话
+
+- rsync​：高效文件同步工具
+
+- ufw​：简易防火墙配置工具
+
+- 
+
+### 4. oh-my-zsh 安装与配置
+
+参考[zsh和oh-my-zsh安装方法](https://blog.csdn.net/qimowei/article/details/119517167)进行安装，文章讲的是在 Centos 7 下，但其实这个安装方法和系统没太大关系，Debian 系（Debian、Ubuntu 等）将 `yum` 换成 `dnf`，Red Hat 8 之前（Centos，Fedora）改成 `yum` 就行。
+
+>不推荐使用 Centos 7 及更老的 Linux，Centos 系列官方已经停止维护，相关的源基本已经关闭，内置软件较老且基本没有办法通过网络更新，推荐使用 Centos Stream 系列。
+
+一键安装脚本见文件夹中的 `install_zsh.sh`。
