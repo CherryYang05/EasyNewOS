@@ -66,6 +66,12 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 
 - [Monaco](https://github.com/Karmenzind/monaco-nerd-fonts)
 
+### 7. 浏览器插件
+
+- [沉浸式翻译](https://chromewebstore.google.com/detail/%E6%B2%89%E6%B5%B8%E5%BC%8F%E7%BF%BB%E8%AF%91-%E7%BD%91%E9%A1%B5%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6-pdf%E7%BF%BB%E8%AF%91-%E5%85%8D%E8%B4%B9/bpoadfkcbjbfhfodiogcnhhhpibjhbnh?hl=zh-CN&utm_source=ext_sidebar)
+
+- [沙拉翻译](https://chromewebstore.google.com/detail/%E6%B2%99%E6%8B%89%E7%BF%BB%E8%AF%91%EF%BC%9A%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8-%E3%80%81%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91%E3%80%81%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%AF%B9%E7%85%A7%E7%BF%BB%E8%AF%91-%E6%9F%A5/kmmcnncdadfmbjkoloakclhfllocaeap?hl=zh-CN&utm_source=ext_sidebar)
+
 ## Linux
 
 以下以 Ubuntu 24.04 的配置为例。
@@ -73,6 +79,56 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 ### 1. 换源
 
 将默认的 Ubuntu 源更换清华源。
+
+Ubuntu 24.04 的源地址配置文件发生了变化（为 `/etc/apt/sources.list.d/ubuntu.sources`），具体参考[这篇文章](https://blog.csdn.net/qq_37344125/article/details/138841559)进行修改。
+
+保存一下各个源的配置：
+
+#### 清华源
+
+```shell
+Types: deb
+URIs: http://mirrors.tuna.tsinghua.edu.cn/ubuntu/
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+```
+
+#### 中科大源
+
+```shell
+Types: deb
+URIs: http://mirrors.ustc.edu.cn/ubuntu/
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+```
+
+#### 阿里源
+
+```shell
+Types: deb
+URIs: http://mirrors.aliyun.com/ubuntu/
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+```
+
+#### 网易源
+
+```shell
+Types: deb
+URIs: http://mirrors.163.com/ubuntu/
+Suites: noble noble-updates noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+```
+
+ARM 版本的 Ubuntu 只需在 `ubuntu` 后面添加 `-ports` 即可。
+
+其他 Ubuntu 版本的镜像源修改可以参考[这篇文章](https://midoq.github.io/2022/05/30/Ubuntu20-04%E6%9B%B4%E6%8D%A2%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90/)
+
+附：[清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/)
 
 ### 2. root 免密登录
 
@@ -92,21 +148,18 @@ sudo apt install openssh-server
 
 可以编辑 sshd_config 文件，修改开放的端口号和一些权限设置（允许 root 密码认证登录，）
 
-秘钥登录方式：A（SSH Client） 连接 B（SSH Server），A 需要将公钥（.pub）文件发送给 B。
+>秘钥登录方式：A（SSH Client） 连接 B（SSH Server），A 需要将公钥（.pub）文件发送给 B。如果要连接我们安装的 Ubuntu（SSH Server），要在宿主机上生成公钥。
 
-如果要连接我们安装的 Ubuntu（SSH Server），要在宿主机上生成公钥。
+步骤如下：
 
 ```shell
 ssh-keygen
 ```
 
-参数说明：
-
-- t：不加参数就是默认使用 ed25519 算法（比 RSA 更安全高效）
-
-- C：添加注释（通常用邮箱标识密钥）
-
-- f：指定密钥文件名（默认为 id_ed25519）
+>参数说明：
+>t：不加参数就是默认使用 ed25519 算法（比 RSA 更安全高效）
+>C：添加注释（通常用邮箱标识密钥）
+>f：指定密钥文件名（默认为 id_ed25519）
 
 然后将公钥复制到服务器的 `~/.ssh/authorized_keys` 文件中
 
