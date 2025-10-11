@@ -131,15 +131,6 @@ else
     print_error ".zshrc文件不存在，请手动创建"
 fi
 
-# 6. 重新加载配置
-print_message "步骤6: 重新加载zsh配置..."
-if [ -f "$ZSH_RC" ]; then
-    source "$ZSH_RC"
-    print_message "配置重新加载完成"
-else
-    print_warning "无法重新加载配置，.zshrc文件不存在"
-fi
-
 # 完成提示
 echo ""
 print_message "zsh安装和配置完成！"
