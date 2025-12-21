@@ -52,6 +52,32 @@ VSCode 配置编译运行 C 和 CPP 的运行任务，主要包括 `tasks.json`�
 
 附：当宿主机配置了代理的时候，运行 WSL 终端会出现 `wsl: 检测到 localhost 代理配置，但未镜像到 WSL。NAT 模式下的 WSL 不支持 localhost 代理` 的提示，[这篇文章](https://www.cnblogs.com/hg479/p/17869109.html) 和 [WSL 的 github issue](https://github.com/microsoft/WSL/issues/10753) 可以解决这个问题。
 
+#### 5.1 更改 wsl 安装位置
+
+wsl2 使用的是 vhdx 虚拟硬盘，所以可以很方便的移动，wsl 默认存放在 `C:\Users\[UserName]\AppData\Local\wsl` 目录下，为了避免过多占用 C 盘空间，因此可以用以下方式将其转移到另一个盘上。
+
+1. 导出 WSL 发行版
+
+如果不知道自己 wsl 的名称（我这里是 `Ubuntu-24.04`）可以使用 wsl --status 查看
+
+```shell
+wsl --export Ubuntu-24.04 D://wsl.tar
+```
+
+2. 注销 WSL 发行版
+
+```shell
+wsl --unregister Ubuntu-24.04
+```
+
+3. 导入 WSL 发行版
+
+```shell
+wsl --import Ubuntu-24.04 D:\\wsl D:\\wsl.tar
+```
+
+这里 `Ubuntu-24.04` 是要导入的 WSL 发行版名称，`D:\\wsl` 是你要导入的目标路径，`D:\\wsl.tar` 是之前导出的 tar 文件路径。
+
 ### 6. 字体
 
 - [苹方](https://github.com/ACT-02/PingFang-for-Windows)
@@ -201,8 +227,6 @@ sudo service sshd restart
 - rsync​：高效文件同步工具
 
 - ufw​：简易防火墙配置工具
-
-- 
 
 ### 4. oh-my-zsh 安装与配置
 
