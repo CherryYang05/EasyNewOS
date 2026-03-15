@@ -110,6 +110,13 @@ wsl --import Ubuntu-24.04 D:\\wsl D:\\wsl.tar
 
 Ubuntu 24.04 的源地址配置文件发生了变化（为 `/etc/apt/sources.list.d/ubuntu.sources`），具体参考[这篇文章](https://blog.csdn.net/qq_37344125/article/details/138841559)进行修改。
 
+下面是替换为清华源的快捷命令：
+
+```shell
+sudo sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list.d/ubuntu.sources
+sudo sed -i 's/security.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list.d/ubuntu.sources
+```
+
 保存一下各个源的配置：
 
 #### 清华源
@@ -234,6 +241,32 @@ sudo service sshd restart
 
 参考[zsh和oh-my-zsh安装方法](https://blog.csdn.net/qimowei/article/details/119517167)进行安装，文章讲的是在 Centos 7 下，但其实这个安装方法和系统没太大关系，Debian 系（Debian、Ubuntu 等）将 `yum` 换成 `dnf`，Red Hat 8 之前（Centos，Fedora）改成 `yum` 就行。
 
->不推荐使用 Centos 7 及更老的 Linux，Centos 系列官方已经停止维护，相关的源基本已经关闭，内置软件较老且基本没有办法通过网络更新，推荐使用 Centos Stream 系列。
+>不推荐使用 Centos 7 及更老的 Linux，Centos 系列官方已经停止维护，相关的源基本已经关闭，内置软件较老且基本没有办法通过网络更新，如一定要使用 Centos，推荐使用 Centos Stream 系列。
 
 一键安装脚本见文件夹中的 `install_zsh.sh`。
+
+### 5. docker 安装
+
+因为国内的网络限制，在国内一些服务器上安装 docker 很麻烦，下面是以 Ubuntu 24.04 为例，通过 [docker 官方文档](https://docs.docker.com/engine/install/ubuntu/) 和清华源安装 docker 的命令。
+
+```shell
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://mirrors.tuna.tsinghua.edu.cn/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt update
+```
+
+上面的命令主要是将官方文档中 GPG 秘钥的官方域名换成了清华源。
