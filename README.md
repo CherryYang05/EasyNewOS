@@ -267,6 +267,8 @@ Signed-By: /etc/apt/keyrings/docker.asc
 EOF
 
 sudo apt update
+
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
 上面的命令主要是将官方文档中 GPG 秘钥的官方域名换成了清华源。
