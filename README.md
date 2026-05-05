@@ -100,6 +100,20 @@ wsl --import Ubuntu-24.04 D:\\wsl D:\\wsl.tar
 
 - [沙拉翻译](https://chromewebstore.google.com/detail/%E6%B2%99%E6%8B%89%E7%BF%BB%E8%AF%91%EF%BC%9A%E8%81%9A%E5%90%88%E8%AF%8D%E5%85%B8-%E3%80%81%E5%88%92%E8%AF%8D%E7%BF%BB%E8%AF%91%E3%80%81%E6%B2%89%E6%B5%B8%E5%BC%8F%E5%AF%B9%E7%85%A7%E7%BF%BB%E8%AF%91-%E6%9F%A5/kmmcnncdadfmbjkoloakclhfllocaeap?hl=zh-CN&utm_source=ext_sidebar)
 
+### 8. 系统清理脚本
+
+在 `scripts/` 目录下提供了 Windows 系统清理脚本，可以清理以下内容：
+
+- Windows Temp 和 Prefetch 预读取文件
+- 用户临时文件目录
+- Windows 更新缓存
+- Microsoft Edge 浏览器缓存（Code Cache、GPUCache、ShaderCache 等）
+- 崩溃转储文件（CrashDumps）
+- npm/pip 开发工具缓存
+- 回收站
+
+以管理员身份运行可获得最佳清理效果。
+
 ## Linux
 
 以下以 Ubuntu 24.04 的配置为例。
